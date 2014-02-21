@@ -5,7 +5,7 @@ Apache Stanbol PHP Client is a tool that let [Apache Stanbol](http://stanbol.apa
 
 Apache Stanbol PHP Client . The project is organized as a set of REST clients, one for each mentioned Stanbol Component. Each Client component has an implementation for all the RESTful services provided by the component API, managing the requests to the remote services and parsing service's responses for converting them to easy-to-use PHP objects.
 
-Apache Stanbol Client has been developed using third party libraries like [Guzzle](https://guzzle.readthedocs.org/en/latest/) as RESTful client and [EasyRDF](http://www.easyrdf.org/‎ for RDF parsing and representation.
+Apache Stanbol Client has been developed using third party libraries like [Guzzle](https://guzzle.readthedocs.org/en/latest/) as RESTful client and [EasyRDF](http://www.easyrdf.org/‎) for RDF parsing and representation.
 
 The library makes use of [Composer](https://github.com/composer/composer) to obtain the needed dependencies. Composer is the new PHP package management system that aims to solve the code sharing problem.
 
@@ -101,7 +101,7 @@ This piece of code will return an array where each element is composed by anothe
 
     // Create
     $entityhubService = $stanbolClient->entityhub();
-    $entityhubService->setSite('ecSite'); // If you want to add the entity to a custom site instead of memory site
+    $entityhubService->setSite(SITE); // If you want to add the entity to a custom site instead of memory site
     $entity = new \Stanbol\Vocabulary\Model\Entity(ENTITY_URI);
     $entity->addPropertyValue($property, $value, $lang);
     $entityhubService->create($entity); // Return the entity id if the entity was created successfully or throw an exception if the entity could not be created or a connection error occurred
