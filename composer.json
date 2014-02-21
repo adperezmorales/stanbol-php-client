@@ -5,7 +5,7 @@
     "keywords": ["RedLink", "SDK", "framework", "http", "rest", "web service", "curl", "client"],
     "homepage": "http://stanbol.apache.org",
     "license": "MIT",
-
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Antonio David Pérez Morales",
@@ -16,7 +16,7 @@
     
     "require": {
         "guzzle/guzzle" : "dev-master",
-        "easyrdf/easyrdf": "*",
+        "easyrdf/easyrdf": "0.8.0",
         "hafriedlander/phockito": "dev-master"
     },
     

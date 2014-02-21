@@ -72,7 +72,7 @@ class EasyRdfEnhancementsParser implements EnhancementsParser
         $result = $this->parseTextAnnotations($this->model);
         $result = array_merge($result, $this->parseEntityAnnotations($this->model));
 
-        $modelArray = $this->model->toArray();
+        $modelArray = $this->model->toRdfPhp();
         foreach ($result as $enhancementUri => $enhancementInstance) {
             $enhancementProperties = $modelArray[$enhancementUri];
             if (isset($enhancementProperties[DCTerms::RELATION])) {
@@ -102,7 +102,7 @@ class EasyRdfEnhancementsParser implements EnhancementsParser
          * Gets the text annotations
          */
         $textAnnotations = $this->model->resourcesMatching(RDF::TYPE, array('type' => 'uri', 'value' => FISE::TEXT_ANNOTATION));
-        $modelArray = $this->model->toArray();
+        $modelArray = $this->model->toRdfPhp();
 
         foreach ($textAnnotations as $taResource) {
             if (isset($modelArray[$taResource->getUri()][DCTerms::CREATOR]) && $modelArray[$taResource->getUri()][DCTerms::CREATOR][0]['value'] == self::$LANGUAGE_DETECTION_ENHANCEMENT_ENGINE)
@@ -150,7 +150,7 @@ class EasyRdfEnhancementsParser implements EnhancementsParser
     public function parseLanguages()
     {
         $languages = array();
-        $modelArray = $this->model->toArray();
+        $modelArray = $this->model->toRdfPhp();
         $textAnnotationsLanguage = $this->model->resourcesMatching(DCTerms::TYPE, array('type' => 'uri', 'value' => DCTerms::LINGUISTIC_SYSTEM));
         foreach ($textAnnotationsLanguage as $taLangResource) {
             $taProperties = $modelArray[$taLangResource->getUri()];
@@ -177,7 +177,7 @@ class EasyRdfEnhancementsParser implements EnhancementsParser
         /*
          * Convert the model to an array for ease of manipulation
          */
-        $modelArray = $this->model->toArray();
+        $modelArray = $this->model->toRdfPhp();
         $taProperties = $modelArray[$textAnnotation->getUri()];
 
         $textAnnotation->setType(isset($taProperties[DCTerms::TYPE][0]['value']) ? (string) $taProperties[DCTerms::TYPE][0]['value'] : null);
@@ -206,7 +206,7 @@ class EasyRdfEnhancementsParser implements EnhancementsParser
         /*
          * Convert the model to an array for ease of manipulation
          */
-        $modelArray = $this->model->toArray();
+        $modelArray = $this->model->toRdfPhp();
         $eaProperties = $modelArray[$entityAnnotation->getUri()];
 
         $entityAnnotation->setEntityLabel(isset($eaProperties[FISE::ENTITY_LABEL][0]['value']) ? (string) $eaProperties[FISE::ENTITY_LABEL][0]['value'] : null);
@@ -240,7 +240,7 @@ class EasyRdfEnhancementsParser implements EnhancementsParser
         /*
          * Convert the model to an array for ease of manipulation
          */
-        $modelArray = $this->model->toArray();
+        $modelArray = $this->model->toRdfPhp();
         $enProperties = $modelArray[$enhancement->getUri()];
 
         $enhancement->setConfidence(isset($enProperties[FISE::CONFIDENCE][0]['value']) ? floatval($enProperties[FISE::CONFIDENCE][0]['value']) : 0);
@@ -260,7 +260,7 @@ class EasyRdfEnhancementsParser implements EnhancementsParser
     public function parseEntity($entityUri)
     {
         $entity = new Entity($entityUri);
-        $modelArray = $this->model->toArray();
+        $modelArray = $this->model->toRdfPhp();
         
         $entityProperties = $modelArray[$entityUri];
         foreach ($entityProperties as $property => $arrayValues) {
@@ -289,7 +289,7 @@ class EasyRdfEnhancementsParser implements EnhancementsParser
      */
     private function updateEnhancementsLanguages(Enhancements $enhancements)
     {
-        $modelArray = $this->model->toArray();
+        $modelArray = $this->model->toRdfPhp();
         $textAnnotationsLanguages = $this->model->resourcesMatching(DCTerms::CREATOR, array('type' => 'literal', 'value' => self::$LANGUAGE_DETECTION_ENHANCEMENT_ENGINE));
         foreach ($textAnnotationsLanguages as $talResource) {
             $talProperties = $modelArray[$talResource->getUri()];
