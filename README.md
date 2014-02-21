@@ -48,7 +48,7 @@ Below you can find some code examples showing part of the covered features for e
 
     $configuration = array(); // Advanced Guzzle configuration
 
-    $stanbolClient = \Stanbol\Client\StanbolClient::getInstance(STANBOL_ENDPOINT, $configuration);
+    $stanbolClient = new \Stanbol\Client\StanbolClient::getInstance(STANBOL_ENDPOINT, $configuration);
     $enhancements = $stanbolClient->enhancer()->enhance("Paris is the capital of France");
 
     foreach($enhancements->getTextAnnotations() as $textAnnotation) {
