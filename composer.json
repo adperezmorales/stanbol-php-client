@@ -1,0 +1,29 @@
+{
+    "name": "stanbol/stanbol-php-client",
+    "type": "library",
+    "description": "Stanbol PHP client library to request and deal with Apache Stanbol API",
+    "keywords": ["RedLink", "SDK", "framework", "http", "rest", "web service", "curl", "client"],
+    "homepage": "http://stanbol.apache.org",
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "Antonio David Pérez Morales",
+            "email": "adperezmorales@gmail.com",
+            "homepage": "https://github.com/adperezmorales"
+        }
+    ],
+    
+    "require": {
+        "guzzle/guzzle" : "dev-master",
+        "easyrdf/easyrdf": "*",
+        "hafriedlander/phockito": "dev-master"
+    },
+    
+    "autoload": {
+        "psr-0": {
+            "Stanbol\\Tests": "tests/",
+            "Stanbol": "src/"
+        }
+    }
+}
