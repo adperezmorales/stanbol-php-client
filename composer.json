@@ -16,14 +16,14 @@
     
     "require": {
         "guzzle/guzzle" : "dev-master",
-        "easyrdf/easyrdf": "0.8.0",
-        "hafriedlander/phockito": "dev-master"
+        "easyrdf/easyrdf": "0.8.0"
     },
     
     "autoload": {
         "psr-0": {
             "Stanbol\\Tests": "tests/",
             "Stanbol": "src/"
-        }
+        },
+        "classmap": ["vendor/hafriedlander/phockito"]
     }
 }
